@@ -5,7 +5,7 @@ import { LoaderWrap } from './Loader.styled';
 export const Loader = () => {
   return (
     <LoaderWrap>
-      <RotatingLines strokeColor="black" />
+      <RotatingLines strokeColor="teal" />
     </LoaderWrap>
   );
 };

@@ -8,13 +8,14 @@ import { fetchContacts } from 'redux/operations';
 
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
 import { NoServise } from 'components/NoServise/NoServise';
-import { Loader } from 'components/Loader/Loader';
+// import { Loader } from 'components/Loader/Loader';
 
 import { List } from './ContactList.styled';
 
 export const ContactList = () => {
-  const { items, isLoading, error } = useSelector(selectContacts);
+  const { items, error } = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
+  // const { items, isLoading, error } = useSelector(selectContacts);
 
   const dispatch = useDispatch();
 
@@ -37,11 +38,11 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
       {error && <NoServise message={error} />}
       <List>
-        {visibleContact.map(({ id, name, phone }) => (
-          <ContactListItem key={id} id={id} name={name} number={phone} />
+        {visibleContact.map(({ id, name, number }) => (
+          <ContactListItem key={id} id={id} name={name} number={number} />
         ))}
       </List>
     </>

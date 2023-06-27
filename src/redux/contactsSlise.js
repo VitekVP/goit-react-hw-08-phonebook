@@ -25,17 +25,3 @@ const contactsSlise = createSlice({
 });
 export const { addElement, removeElement } = contactsSlise.actions;
 export const contactsReduser = contactsSlise.reducer;
-
-// removeElement(state, action) {
-//   return {
-//     ...state,
-//     contacts: state.contacts.filter(item => item.id !== action.payload),
-//   };
-// },
-
-// .addMatcher(action => {
-//         action.type.endsWith('/pending');
-//       }, handlePending)
-//       .addMatcher(action => {
-//         action.type.endsWith('/rejected');
-//       }, handleRejected)

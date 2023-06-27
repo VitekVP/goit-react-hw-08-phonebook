@@ -1,16 +1,33 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import { RotatingLines } from 'react-loader-spinner';
+import { Button } from '@chakra-ui/react';
 
 import { deleteContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
-import { ListItem, Btn } from './ContactListItem.styled';
+import { ListItem } from './ContactListItem.styled';
 
 export const ContactListItem = ({ id, name, number }) => {
+  const [load, setLoad] = useState(false);
+  const { error } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleClikBtn = () => {
-    dispatch(deleteContact(id));
+    setLoad(true);
+    dispatch(deleteContact(id))
+      .unwrap()
+      .then(() => {
+        setLoad(false);
+        toast.success(`contact ${name} with ${number} deleted successfully`);
+      })
+      .catch(() => {
+        setLoad(false);
+        toast.error(`${error}`);
+      });
   };
 
   return (
@@ -18,9 +35,17 @@ export const ContactListItem = ({ id, name, number }) => {
       <p>
         {name}: {number}
       </p>
-      <Btn type="button" onClick={handleClikBtn}>
+      <Button
+        type="button"
+        onClick={handleClikBtn}
+        colorScheme="teal"
+        variant="outline"
+        size="sm"
+        width="80px"
+      >
+        {load && <RotatingLines strokeColor="teal" width="14" />}
         Delete
-      </Btn>
+      </Button>
     </ListItem>
   );
 };
