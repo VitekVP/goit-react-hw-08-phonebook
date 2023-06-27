@@ -7,6 +7,7 @@ export const Header = styled.header`
   top: 5px;
   left: 5px;
   right: 5px;
+  z-index: 1000;
 
   height: 80px;
   max-width: 100%;
