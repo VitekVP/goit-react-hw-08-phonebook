@@ -1,5 +1,3 @@
-// import { NavLink } from 'react-router-dom';
-
 import styled from '@emotion/styled';
 
 export const Header = styled.header`
@@ -25,6 +23,10 @@ export const Header = styled.header`
 `;
 
 export const Logo = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
   font-size: 26px;
   font-weight: 700;
   color: #020c59;

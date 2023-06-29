@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { RotatingLines } from 'react-loader-spinner';
-import { Button } from '@chakra-ui/react';
+import { Button, Icon } from '@chakra-ui/react';
+import { IoIosContact } from 'react-icons/io';
 
 import { deleteContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
 
-import { ListItem } from './ContactListItem.styled';
+import { ListItem, BoxIcon } from './ContactListItem.styled';
 
 export const ContactListItem = ({ id, name, number }) => {
   const [load, setLoad] = useState(false);
-  const { error } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleClikBtn = () => {
@@ -26,15 +25,18 @@ export const ContactListItem = ({ id, name, number }) => {
       })
       .catch(() => {
         setLoad(false);
-        toast.error(`${error}`);
+        toast.error(`Sorry samething wrong, please try again!`);
       });
   };
 
   return (
     <ListItem key={id}>
-      <p>
-        {name}: {number}
-      </p>
+      <BoxIcon>
+        <Icon as={IoIosContact} boxSize={6} color="#020c59" />
+        <p>
+          {name}: {number}
+        </p>
+      </BoxIcon>
       <Button
         type="button"
         onClick={handleClikBtn}

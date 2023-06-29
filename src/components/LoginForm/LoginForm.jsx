@@ -6,9 +6,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react';
 
 import { logIn } from 'redux/operations';
-import { selectError, selectLoading } from 'redux/selectors';
-
-import { NoServise } from 'components/NoServise/NoServise';
+import { selectLoading } from 'redux/selectors';
 
 import {
   Container,
@@ -24,7 +22,6 @@ export const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
   const isloading = useSelector(selectLoading);
-  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   const handleInputChange = event => {
@@ -54,15 +51,17 @@ export const LoginForm = () => {
     dispatch(logIn({ email, password }))
       .unwrap()
       .then(() => {
-        toast.info('Wellcome');
+        toast.info(`Welcome to the phonebook!`);
         reset();
+      })
+      .catch(error => {
+        toast.error(`Wrong email or password, please try again!`);
       });
   };
 
   return (
     <Container>
       <Title>Login</Title>
-      {error && <NoServise message={error} />}
       <FormPhonebook onSubmit={handleSubmit}>
         <Label>
           Email

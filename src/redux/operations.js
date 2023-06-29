@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { instance } from 'Api';
-
 import * as api from 'Api';
 
 const setToken = token => {

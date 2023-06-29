@@ -17,3 +17,9 @@ export const ListItem = styled.li`
     margin-bottom: 6px;
   }
 `;
+
+export const BoxIcon = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+`;

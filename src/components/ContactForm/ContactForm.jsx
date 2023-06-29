@@ -14,7 +14,7 @@ export const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [load, setLoad] = useState(false);
-  const { items, error } = useSelector(selectContacts);
+  const { items } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleInputChange = event => {
@@ -67,7 +67,7 @@ export const Form = () => {
       })
       .catch(() => {
         setLoad(false);
-        toast.error(`${error}`);
+        toast.error(`Sorry samething wrong, please try again!`);
       });
   };
 

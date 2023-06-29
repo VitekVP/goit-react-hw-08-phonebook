@@ -22,7 +22,7 @@ const Layout = () => {
         </Main>
       </ChakraProvider>
 
-      <ToastContainer theme="colored" autoClose={3000} position="top-right" />
+      <ToastContainer theme="colored" autoClose={3000} position="top-center" />
     </>
   );
 };

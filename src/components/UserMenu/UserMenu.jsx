@@ -2,33 +2,36 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { toast } from 'react-toastify';
 import { RotatingLines } from 'react-loader-spinner';
-import { Button } from '@chakra-ui/react';
+import { Button, Icon } from '@chakra-ui/react';
+import { IoIosContact } from 'react-icons/io';
 
 import { logOut } from 'redux/operations';
-import { selectError, selectLoading, selectUserName } from 'redux/selectors';
+import { selectLoading, selectUserName } from 'redux/selectors';
 
 import { Container, Name } from './UserMenu.styled';
 
 export const UserMenu = () => {
-  const email = useSelector(selectUserName);
+  const name = useSelector(selectUserName);
   const isloading = useSelector(selectLoading);
-  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
     dispatch(logOut())
       .unwrap()
       .then(() => {
-        toast.info(`you are out of the app`);
+        toast.info(`You are out of the app`);
       })
       .catch(() => {
-        toast.error(`${error}`);
+        toast.error(`Sorry samething wrong, please try again!`);
       });
   };
 
   return (
     <Container>
-      <Name>{email}</Name>
+      <Name>
+        <Icon as={IoIosContact} boxSize={8} color="white" />
+        {name}
+      </Name>
       <Button
         colorScheme="whatsapp"
         width="100px"

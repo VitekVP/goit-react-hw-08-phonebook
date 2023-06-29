@@ -9,6 +9,10 @@ export const Container = styled.div`
 `;
 
 export const Name = styled.p`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
   font-size: 20px;
   font-weight: 500;
   color: white;

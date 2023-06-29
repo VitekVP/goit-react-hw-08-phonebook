@@ -1,5 +1,8 @@
 import { useSelector } from 'react-redux';
 
+import { RiContactsBook2Line } from 'react-icons/ri';
+import { Icon } from '@chakra-ui/react';
+
 import { selectIsLoggedIn } from 'redux/selectors';
 
 import { Navigation } from 'components/Navigation/Navigation';
@@ -12,7 +15,10 @@ export const AppBar = () => {
 
   return (
     <Header>
-      <Logo>Phonebook</Logo>
+      <Logo>
+        {' '}
+        <Icon as={RiContactsBook2Line} boxSize={8} color="#020c59" /> Phonebook
+      </Logo>
       <Navigation />
       {isLoggedIn && <UserMenu />}
     </Header>
